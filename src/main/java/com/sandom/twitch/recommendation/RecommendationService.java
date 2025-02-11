@@ -54,8 +54,6 @@ public class RecommendationService {
         for (Item item : favoriteItems) {
             gameIds.add(item.gameId());
         }
-//        Assembly willFavorite =
         return itemService.getItems(new ArrayList<>(gameIds));
-//        return willFavorite;
     }
 }

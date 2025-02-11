@@ -42,6 +42,7 @@ spring:
 ---
 logging:
   level:
+    com.sandom.twitch: DEBUG
     feign.Logger: DEBUG
     org.apache.coyote.http11.Http11InputBuffer: DEBUG
     org.springframework.jdbc.core: DEBUG

@@ -43,6 +43,3 @@ CREATE TABLE favorite_records
     FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
     UNIQUE KEY unique_item_and_user_combo (item_id, user_id)
 );
-
-INSERT INTO users (username, password)
-VALUES ('sandom', 577599);
