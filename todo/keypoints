@@ -1,0 +1,3 @@
+use yml instead of properties
+frontend -> api layer (controller) -> service layer (business logic) -> data access layer (repository) -> database
+the type of a http response must be an object, cannot be a List

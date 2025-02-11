@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: twitch
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - 3306:3306
+    volumes:
+      - my-db-volume:/var/lib/mysql
+
+volumes:
+  my-db-volume:

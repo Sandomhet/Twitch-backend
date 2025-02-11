@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: twitch
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      client:
+        registration:
+          twitch: # corresponds to clientRegistrationId
+            authorization-grant-type: client_credentials # machine to machine communication
+            client-authentication-method: client_secret_post # body of the request
+            client-id: "ch0db3g1qs6ce9s4h5pur1vxyjsnxk"
+            client-secret: "xd72ocim39k6c82pd7tkeidmtd394n"
+        provider:
+          twitch:
+            token-uri: https://id.twitch.tv/oauth2/token # refresh token
+  cloud:
+    openfeign:
+      oauth2:
+        enabled: true
+        clientRegistrationId: twitch
+      client:
+        config:
+          twitch-api: # name of feign client
+            url: https://api.twitch.tv/helix
+            logger-level: basic
+            default-request-headers:
+              Client-Id: "ch0db3g1qs6ce9s4h5pur1vxyjsnxk"
+  datasource:
+    url: jdbc:mysql://localhost:3306/twitch
+    username: root
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: "classpath:database-init.sql"
+  cache:
+    caffeine:
+      spec: expireAfterWrite=5m
+---
+logging:
+  level:
+    feign.Logger: DEBUG
+    org.apache.coyote.http11.Http11InputBuffer: DEBUG
+    org.springframework.jdbc.core: DEBUG
